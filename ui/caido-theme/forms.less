@@ -1,0 +1,397 @@
+// =====================================================
+// Form Elements Styling - Caido Theme
+// =====================================================
+
+@import './variables.less';
+
+// =====================================================
+// Form Group
+// =====================================================
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-sm;
+  margin-bottom: @spacing-lg;
+
+  label {
+    font-size: @font-size-sm;
+    font-weight: 600;
+    color: @text-secondary;
+  }
+
+  .form-hint {
+    font-size: @font-size-xs;
+    color: @text-tertiary;
+    margin-top: -@spacing-sm;
+  }
+
+  .form-error {
+    font-size: @font-size-xs;
+    color: @error-color;
+    margin-top: -@spacing-sm;
+  }
+
+  &.has-error {
+    input,
+    textarea,
+    select {
+      border-color: @error-color;
+      background-color: rgba(@error-color, 0.05);
+
+      &:focus {
+        border-color: @error-color;
+        box-shadow: 0 0 0 2px rgba(@error-color, 0.1);
+      }
+    }
+  }
+}
+
+// =====================================================
+// Input Fields
+// =====================================================
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='date'],
+input[type='time'],
+input[type='url'],
+textarea,
+select {
+  width: 100%;
+  padding: @spacing-sm @spacing-md;
+  background-color: @bg-secondary;
+  border: 1px solid @border-color;
+  border-radius: @radius-md;
+  color: @text-primary;
+  font-size: @font-size-base;
+  font-family: @font-family;
+  transition: all @transition-base;
+
+  &::placeholder {
+    color: @text-tertiary;
+  }
+
+  &:focus {
+    border-color: @primary-accent;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(@primary-accent, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: @bg-tertiary;
+  }
+
+  &:read-only {
+    background-color: @bg-tertiary;
+    cursor: not-allowed;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: 'Courier New', monospace;
+}
+
+// =====================================================
+// Select Dropdown
+// =====================================================
+
+select {
+  cursor: pointer;
+  padding-right: @spacing-lg;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b0b0b0' d='M2 4l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right @spacing-md center;
+  padding-right: @spacing-xl;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+// =====================================================
+// Checkbox & Radio
+// =====================================================
+
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-md;
+}
+
+.checkbox-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: @spacing-md;
+  cursor: pointer;
+  user-select: none;
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid @border-color;
+    background-color: @bg-secondary;
+    cursor: pointer;
+    transition: all @transition-base;
+    flex-shrink: 0;
+
+    &:hover {
+      border-color: @primary-accent;
+    }
+
+    &:checked {
+      background-color: @primary-accent;
+      border-color: @primary-accent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 11-1.06-1.06L12.72 4.22a.75.75 0 011.06 0z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:focus-visible {
+      outline: 2px solid @primary-accent;
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  input[type='radio'] {
+    border-radius: 50%;
+
+    &:checked {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3' fill='%23ffffff'/%3E%3C/svg%3E");
+    }
+  }
+
+  label {
+    margin: 0;
+    font-weight: normal;
+    color: @text-primary;
+  }
+}
+
+// =====================================================
+// Switch Toggle
+// =====================================================
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: @spacing-md;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    appearance: none;
+    width: 44px;
+    height: 24px;
+    background-color: @bg-tertiary;
+    border: 1px solid @border-color;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all @transition-base;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: @text-primary;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left @transition-base;
+    }
+
+    &:hover {
+      border-color: @primary-accent;
+    }
+
+    &:checked {
+      background-color: @primary-accent;
+      border-color: @primary-accent;
+
+      &::after {
+        left: 22px;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  label {
+    margin: 0;
+    cursor: pointer;
+    color: @text-primary;
+    font-weight: normal;
+  }
+}
+
+// =====================================================
+// Input with Icon
+// =====================================================
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+
+  .icon {
+    position: absolute;
+    left: @spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: @text-tertiary;
+    pointer-events: none;
+    font-size: @font-size-base;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  input {
+    padding-left: @spacing-xl + @spacing-md;
+  }
+
+  &.icon-right {
+    .icon {
+      right: @spacing-md;
+      left: auto;
+    }
+
+    input {
+      padding-right: @spacing-xl + @spacing-md;
+      padding-left: @spacing-md;
+    }
+  }
+}
+
+// =====================================================
+// Input with Label Attached
+// =====================================================
+
+.input-group {
+  display: flex;
+  gap: 0;
+
+  .input-label {
+    padding: @spacing-sm @spacing-md;
+    background-color: @bg-tertiary;
+    border: 1px solid @border-color;
+    border-right: none;
+    border-radius: @radius-md 0 0 @radius-md;
+    color: @text-secondary;
+    font-size: @font-size-sm;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  input {
+    border-radius: 0 @radius-md @radius-md 0;
+    border-left: none;
+
+    &:focus {
+      border-left: 1px solid @primary-accent;
+    }
+  }
+}
+
+// =====================================================
+// Form Error Messages
+// =====================================================
+
+.form-validation {
+  display: flex;
+  align-items: center;
+  gap: @spacing-sm;
+  padding: @spacing-sm @spacing-md;
+  background-color: rgba(@error-color, 0.1);
+  border: 1px solid rgba(@error-color, 0.3);
+  border-radius: @radius-md;
+  color: @error-color;
+  font-size: @font-size-sm;
+  margin-top: @spacing-md;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &.success {
+    background-color: rgba(@success-color, 0.1);
+    border-color: rgba(@success-color, 0.3);
+    color: @success-color;
+  }
+
+  &.warning {
+    background-color: rgba(@warning-color, 0.1);
+    border-color: rgba(@warning-color, 0.3);
+    color: @warning-color;
+  }
+
+  &.info {
+    background-color: rgba(@info-color, 0.1);
+    border-color: rgba(@info-color, 0.3);
+    color: @info-color;
+  }
+}
+
+// =====================================================
+// Form Layout
+// =====================================================
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-lg;
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: @spacing-lg;
+  }
+
+  .form-section {
+    padding: @spacing-lg;
+    background-color: @bg-secondary;
+    border: 1px solid @border-color;
+    border-radius: @radius-lg;
+
+    .section-title {
+      font-size: @font-size-base;
+      font-weight: 600;
+      color: @text-primary;
+      margin-bottom: @spacing-lg;
+      padding-bottom: @spacing-md;
+      border-bottom: 1px solid @border-color;
+    }
+
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      gap: @spacing-lg;
+    }
+  }
+}
