@@ -1,0 +1,34 @@
+{
+  "name": "mitmproxy-caido-theme",
+  "version": "1.0.0",
+  "description": "A modern Caido-inspired UI theme for mitmproxy with dark mode and orange accents",
+  "author": "Khaled SafStep",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khaledsafstep-hash/mitmproxy.git"
+  },
+  "keywords": [
+    "mitmproxy",
+    "theme",
+    "ui",
+    "caido",
+    "dark-mode",
+    "less",
+    "css"
+  ],
+  "main": "ui/caido-theme/main.less",
+  "style": "ui/caido-theme/main.less",
+  "files": [
+    "ui/caido-theme/"
+  ],
+  "devDependencies": {
+    "less": "^4.1.3",
+    "less-plugin-clean-css": "^1.5.1"
+  },
+  "scripts": {
+    "build": "lessc ui/caido-theme/main.less ui/caido-theme/main.css",
+    "watch": "lessc --watch ui/caido-theme/main.less ui/caido-theme/main.css",
+    "build:minify": "lessc --clean-css ui/caido-theme/main.less ui/caido-theme/main.min.css"
+  }
+}
