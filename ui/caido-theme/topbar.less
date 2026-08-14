@@ -1,0 +1,203 @@
+// =====================================================
+// Top Bar Styling - Caido Theme
+// =====================================================
+
+@import './variables.less';
+
+.topbar {
+  height: 60px;
+  background-color: @bg-secondary;
+  border-bottom: 1px solid @border-color;
+  display: flex;
+  align-items: center;
+  padding: 0 @spacing-lg;
+  gap: @spacing-lg;
+  flex-shrink: 0;
+
+  // Left Section
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: @spacing-lg;
+  }
+
+  // Center Section (Search Bar)
+  .topbar-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: @spacing-md;
+
+    .search-input {
+      flex: 1;
+      max-width: 600px;
+      padding: @spacing-sm @spacing-md;
+      background-color: @bg-primary;
+      border: 1px solid @border-color;
+      border-radius: @radius-md;
+      color: @text-primary;
+      font-size: @font-size-base;
+      transition: all @transition-base;
+
+      &:focus {
+        border-color: @primary-accent;
+        box-shadow: 0 0 0 2px rgba(@primary-accent, 0.1);
+        outline: none;
+      }
+
+      &::placeholder {
+        color: @text-tertiary;
+      }
+    }
+
+    .search-icon {
+      color: @text-tertiary;
+      font-size: @font-size-lg;
+      pointer-events: none;
+    }
+  }
+
+  // Right Section
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: @spacing-md;
+  }
+
+  // Button Group
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: @spacing-sm;
+
+    .btn {
+      padding: @spacing-sm @spacing-md;
+      background-color: @bg-tertiary;
+      border: 1px solid @border-color;
+      color: @text-secondary;
+      border-radius: @radius-md;
+      cursor: pointer;
+      font-size: @font-size-sm;
+      transition: all @transition-base;
+      display: flex;
+      align-items: center;
+      gap: @spacing-sm;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: @bg-primary;
+        border-color: @primary-accent;
+        color: @primary-accent;
+      }
+
+      &.primary {
+        background-color: @primary-accent;
+        border-color: @primary-accent;
+        color: @text-primary;
+
+        &:hover {
+          background-color: lighten(@primary-accent, 10%);
+          border-color: lighten(@primary-accent, 10%);
+        }
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  // Dropdown
+  .dropdown {
+    position: relative;
+
+    .dropdown-toggle {
+      padding: @spacing-sm @spacing-md;
+      background-color: @bg-tertiary;
+      border: 1px solid @border-color;
+      color: @text-secondary;
+      border-radius: @radius-md;
+      cursor: pointer;
+      font-size: @font-size-sm;
+      transition: all @transition-base;
+      display: flex;
+      align-items: center;
+      gap: @spacing-sm;
+
+      &:hover {
+        background-color: @bg-primary;
+        color: @primary-accent;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: @bg-secondary;
+      border: 1px solid @border-color;
+      border-radius: @radius-md;
+      margin-top: @spacing-sm;
+      min-width: 180px;
+      z-index: @z-dropdown;
+      box-shadow: @shadow-lg;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+
+      .dropdown-item {
+        padding: @spacing-md @spacing-lg;
+        color: @text-secondary;
+        cursor: pointer;
+        transition: all @transition-base;
+        border-bottom: 1px solid @border-color;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: @bg-tertiary;
+          color: @primary-accent;
+        }
+      }
+    }
+  }
+}
+
+// Topbar Tabs
+.topbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid @border-color;
+
+  .tab {
+    padding: @spacing-md @spacing-lg;
+    background-color: transparent;
+    border: none;
+    color: @text-secondary;
+    cursor: pointer;
+    font-size: @font-size-sm;
+    transition: all @transition-base;
+    border-bottom: 2px solid transparent;
+    position: relative;
+
+    &:hover {
+      color: @text-primary;
+    }
+
+    &.active {
+      color: @primary-accent;
+      border-bottom-color: @primary-accent;
+    }
+  }
+}
