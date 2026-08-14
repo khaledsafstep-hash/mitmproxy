@@ -1,0 +1,145 @@
+// =====================================================
+// Base Styles - Caido Theme
+// =====================================================
+
+@import './variables.less';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: @font-family;
+  font-size: @font-size-base;
+  color: @text-primary;
+  background-color: @bg-primary;
+  overflow: hidden;
+}
+
+// Scrollbar Styling
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: @bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @gray-600;
+  border-radius: @radius-sm;
+
+  &:hover {
+    background: @gray-500;
+  }
+}
+
+// Selection
+::selection {
+  background-color: @primary-accent;
+  color: @text-primary;
+}
+
+// Focus Outline
+:focus-visible {
+  outline: 2px solid @primary-accent;
+  outline-offset: 2px;
+}
+
+// Buttons Base
+button {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  cursor: pointer;
+  border: none;
+  padding: @spacing-sm @spacing-md;
+  border-radius: @radius-md;
+  transition: all @transition-base;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Input Base
+input, textarea, select {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  color: @text-primary;
+  background-color: @bg-secondary;
+  border: 1px solid @border-color;
+  border-radius: @radius-md;
+  padding: @spacing-sm @spacing-md;
+  transition: all @transition-base;
+
+  &:focus {
+    border-color: @primary-accent;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: @text-tertiary;
+  }
+}
+
+// Links
+a {
+  color: @primary-accent;
+  text-decoration: none;
+  transition: color @transition-base;
+
+  &:hover {
+    color: lighten(@primary-accent, 10%);
+  }
+}
+
+// Utility Classes
+.text-primary { color: @text-primary; }
+.text-secondary { color: @text-secondary; }
+.text-tertiary { color: @text-tertiary; }
+.text-accent { color: @primary-accent; }
+.text-success { color: @success-color; }
+.text-error { color: @error-color; }
+.text-warning { color: @warning-color; }
+
+.bg-primary { background-color: @bg-primary; }
+.bg-secondary { background-color: @bg-secondary; }
+.bg-tertiary { background-color: @bg-tertiary; }
+.bg-accent { background-color: @primary-accent; }
+
+.border-accent { border-color: @primary-accent !important; }
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  color: @text-primary;
+  margin-bottom: @spacing-md;
+}
+
+h1 { font-size: @font-size-2xl; font-weight: 600; }
+h2 { font-size: @font-size-xl; font-weight: 600; }
+h3 { font-size: @font-size-lg; font-weight: 600; }
+h4 { font-size: @font-size-base; font-weight: 600; }
+h5 { font-size: @font-size-sm; font-weight: 600; }
+h6 { font-size: @font-size-xs; font-weight: 600; }
+
+p {
+  line-height: 1.5;
+  margin-bottom: @spacing-md;
+}
+
+// List Styles
+ul, ol {
+  margin-left: @spacing-lg;
+  margin-bottom: @spacing-md;
+
+  li {
+    margin-bottom: @spacing-sm;
+  }
+}
