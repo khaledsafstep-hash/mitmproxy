@@ -1,0 +1,492 @@
+// =====================================================
+// Main Layout Stylesheet - Caido Theme
+// =====================================================
+
+@import './variables.less';
+@import './base.less';
+@import './sidebar.less';
+@import './topbar.less';
+@import './table.less';
+@import './split-view.less';
+@import './statusbar.less';
+
+// =====================================================
+// Main App Container
+// =====================================================
+
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+// =====================================================
+// Workspace Section
+// =====================================================
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background-color: @bg-primary;
+
+  .workspace-header {
+    flex-shrink: 0;
+    background-color: @bg-secondary;
+    border-bottom: 1px solid @border-color;
+  }
+
+  .workspace-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+// =====================================================
+// Modal & Dialog Styles
+// =====================================================
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: @z-modal-backdrop;
+
+  &.active {
+    display: block;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: @bg-secondary;
+  border: 1px solid @border-color;
+  border-radius: @radius-lg;
+  box-shadow: @shadow-lg;
+  z-index: @z-modal;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: none;
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-header {
+    padding: @spacing-lg;
+    border-bottom: 1px solid @border-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+
+    .modal-title {
+      font-size: @font-size-lg;
+      font-weight: 600;
+      color: @text-primary;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: @text-secondary;
+      cursor: pointer;
+      font-size: @font-size-lg;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color @transition-base;
+
+      &:hover {
+        color: @primary-accent;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: @spacing-lg;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .modal-footer {
+    padding: @spacing-lg;
+    border-top: 1px solid @border-color;
+    display: flex;
+    gap: @spacing-md;
+    justify-content: flex-end;
+    flex-shrink: 0;
+
+    button {
+      padding: @spacing-sm @spacing-lg;
+      border-radius: @radius-md;
+      cursor: pointer;
+      font-size: @font-size-base;
+      transition: all @transition-base;
+
+      &.btn-primary {
+        background-color: @primary-accent;
+        border: 1px solid @primary-accent;
+        color: @text-primary;
+
+        &:hover {
+          background-color: lighten(@primary-accent, 10%);
+        }
+      }
+
+      &.btn-secondary {
+        background-color: @bg-tertiary;
+        border: 1px solid @border-color;
+        color: @text-secondary;
+
+        &:hover {
+          background-color: @bg-primary;
+          color: @text-primary;
+        }
+      }
+    }
+  }
+}
+
+// =====================================================
+// Context Menu
+// =====================================================
+
+.context-menu {
+  position: fixed;
+  background-color: @bg-secondary;
+  border: 1px solid @border-color;
+  border-radius: @radius-md;
+  box-shadow: @shadow-lg;
+  z-index: @z-dropdown;
+  min-width: 180px;
+  overflow: hidden;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  .menu-item {
+    padding: @spacing-md @spacing-lg;
+    color: @text-secondary;
+    cursor: pointer;
+    transition: all @transition-base;
+    font-size: @font-size-sm;
+    display: flex;
+    align-items: center;
+    gap: @spacing-md;
+
+    &:hover {
+      background-color: @bg-tertiary;
+      color: @primary-accent;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: transparent;
+        color: @text-secondary;
+      }
+    }
+
+    &.separator {
+      border-top: 1px solid @border-color;
+      padding: 0;
+      margin: @spacing-sm 0;
+      cursor: default;
+      height: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// =====================================================
+// Tooltip
+// =====================================================
+
+.tooltip {
+  position: absolute;
+  background-color: @bg-tertiary;
+  color: @text-primary;
+  padding: @spacing-sm @spacing-md;
+  border-radius: @radius-sm;
+  font-size: @font-size-xs;
+  z-index: @z-tooltip;
+  white-space: nowrap;
+  box-shadow: @shadow-md;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity @transition-base;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: @bg-tertiary;
+    transform: rotate(45deg);
+  }
+
+  // Positioning variants
+  &.top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: @spacing-sm;
+
+    &::before {
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+
+  &.bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: @spacing-sm;
+
+    &::before {
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+
+  &.left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: @spacing-sm;
+
+    &::before {
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  &.right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: @spacing-sm;
+
+    &::before {
+      left: -3px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+}
+
+// =====================================================
+// Loading Spinner
+// =====================================================
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid @border-color;
+  border-top-color: @primary-accent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// =====================================================
+// Badges & Tags
+// =====================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: @spacing-xs @spacing-sm;
+  border-radius: @radius-sm;
+  font-size: @font-size-xs;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.primary {
+    background-color: rgba(@primary-accent, 0.2);
+    color: @primary-accent;
+  }
+
+  &.success {
+    background-color: rgba(@success-color, 0.2);
+    color: @success-color;
+  }
+
+  &.error {
+    background-color: rgba(@error-color, 0.2);
+    color: @error-color;
+  }
+
+  &.warning {
+    background-color: rgba(@warning-color, 0.2);
+    color: @warning-color;
+  }
+
+  &.info {
+    background-color: rgba(@info-color, 0.2);
+    color: @info-color;
+  }
+}
+
+// =====================================================
+// Panels & Cards
+// =====================================================
+
+.card {
+  background-color: @bg-secondary;
+  border: 1px solid @border-color;
+  border-radius: @radius-lg;
+  overflow: hidden;
+
+  .card-header {
+    padding: @spacing-lg;
+    border-bottom: 1px solid @border-color;
+    background-color: @bg-tertiary;
+
+    .card-title {
+      font-size: @font-size-base;
+      font-weight: 600;
+      color: @text-primary;
+      margin: 0;
+    }
+  }
+
+  .card-body {
+    padding: @spacing-lg;
+    color: @text-primary;
+  }
+
+  .card-footer {
+    padding: @spacing-lg;
+    border-top: 1px solid @border-color;
+    background-color: @bg-tertiary;
+    display: flex;
+    gap: @spacing-md;
+    justify-content: flex-end;
+  }
+}
+
+// =====================================================
+// Responsive Utilities
+// =====================================================
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 160px;
+
+    .sidebar-menu .section-title {
+      font-size: @font-size-xs;
+      padding: @spacing-sm @spacing-md;
+    }
+
+    .menu-item {
+      padding: @spacing-sm @spacing-md;
+      font-size: @font-size-sm;
+    }
+  }
+
+  .split-view .split-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+
+    .sidebar-header {
+      padding: @spacing-sm;
+
+      .logo {
+        font-size: @font-size-base;
+      }
+    }
+
+    .menu-item {
+      padding: @spacing-sm;
+      justify-content: center;
+
+      .label {
+        display: none;
+      }
+    }
+
+    .submenu-item {
+      display: none;
+    }
+  }
+
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    padding: @spacing-md;
+
+    .topbar-center {
+      width: 100%;
+      order: 2;
+      margin-top: @spacing-md;
+    }
+
+    .search-input {
+      max-width: 100%;
+    }
+  }
+
+  .split-view .split-container {
+    flex-direction: column;
+
+    .pane {
+      min-height: 200px;
+    }
+  }
+}
