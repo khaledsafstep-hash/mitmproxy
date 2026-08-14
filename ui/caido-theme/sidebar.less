@@ -1,0 +1,213 @@
+// =====================================================
+// Sidebar Styling - Caido Theme
+// =====================================================
+
+@import './variables.less';
+
+.sidebar {
+  width: 200px;
+  height: 100%;
+  background-color: @primary-light;
+  border-right: 1px solid @border-color;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  // Sidebar Header
+  .sidebar-header {
+    padding: @spacing-lg;
+    border-bottom: 1px solid @border-color;
+    background-color: @bg-secondary;
+
+    .logo {
+      font-size: @font-size-xl;
+      font-weight: 700;
+      color: @primary-accent;
+      display: flex;
+      align-items: center;
+      gap: @spacing-sm;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Sidebar Menu
+  .sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: @spacing-md 0;
+
+    .menu-section {
+      margin-bottom: @spacing-md;
+
+      .section-title {
+        padding: @spacing-md @spacing-lg;
+        font-size: @font-size-xs;
+        font-weight: 600;
+        color: @text-tertiary;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .menu-items {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  // Menu Items
+  .menu-item {
+    padding: @spacing-md @spacing-lg;
+    color: @text-secondary;
+    cursor: pointer;
+    transition: all @transition-base;
+    display: flex;
+    align-items: center;
+    gap: @spacing-md;
+    position: relative;
+    font-size: @font-size-base;
+
+    // Icon
+    .icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        stroke-width: 1.5;
+      }
+    }
+
+    // Label
+    .label {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    // Hover State
+    &:hover {
+      background-color: @bg-tertiary;
+      color: @text-primary;
+    }
+
+    // Active State
+    &.active {
+      background-color: @primary-accent;
+      color: @text-primary;
+      font-weight: 600;
+
+      .icon {
+        color: @text-primary;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: lighten(@primary-accent, 15%);
+      }
+    }
+  }
+
+  // Submenu Items
+  .submenu-item {
+    padding-left: @spacing-xl + @spacing-lg;
+    font-size: @font-size-sm;
+    color: @text-tertiary;
+
+    &:hover {
+      background-color: @bg-tertiary;
+      color: @text-secondary;
+    }
+
+    &.active {
+      background-color: rgba(@primary-accent, 0.2);
+      color: @primary-accent;
+    }
+  }
+
+  // Sidebar Footer
+  .sidebar-footer {
+    border-top: 1px solid @border-color;
+    padding: @spacing-md;
+    background-color: @bg-secondary;
+
+    .collapse-btn {
+      width: 100%;
+      padding: @spacing-sm;
+      background-color: @bg-tertiary;
+      border: 1px solid @border-color;
+      border-radius: @radius-md;
+      color: @text-secondary;
+      font-size: @font-size-sm;
+      cursor: pointer;
+      transition: all @transition-base;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: @spacing-sm;
+
+      &:hover {
+        background-color: @bg-primary;
+        color: @primary-accent;
+      }
+    }
+  }
+}
+
+// Collapsed Sidebar
+.sidebar.collapsed {
+  width: 60px;
+
+  .sidebar-header {
+    padding: @spacing-md;
+    justify-content: center;
+
+    .logo-text {
+      display: none;
+    }
+  }
+
+  .sidebar-menu {
+    .section-title {
+      display: none;
+    }
+
+    .menu-item {
+      padding: @spacing-md;
+      justify-content: center;
+
+      .label {
+        display: none;
+      }
+    }
+
+    .submenu-item {
+      display: none;
+    }
+  }
+
+  .sidebar-footer {
+    padding: @spacing-sm;
+
+    .collapse-btn {
+      padding: @spacing-sm;
+    }
+  }
+}
